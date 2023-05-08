@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { createNewUser, authenticateUser } = require("./controller");
-const { json } = require("express/lib/response");
+const auth = require("../../middleware/auth");
 
 router.post("/signup", async (req, res) => {
     try {
@@ -44,6 +44,10 @@ router.post("/", async (req, res) => {
     } catch (error) {
         res.status(400).send(error.message);
     }
+})
+
+router.get("/private_data", auth, (req, res) => {
+    res.status(200).send(`You're in the private territory of ${req.currentUser.email}`);
 })
 
 module.exports = router;
