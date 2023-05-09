@@ -1,46 +1,48 @@
 const User = require("./model");
-const {hashData, checkPassword} = require("./../../util/hashData");
+const { hashData, checkPassword } = require("./../../util/hashData");
 const createToken = require("../../util/createToken");
 
-const createNewUser = async(data) => {
+const createNewUser = async (data) => {
     try {
-        const {name, email, password} = data;
+        const { name, email, password } = data;
 
-        const existingUser = await User.findOne({email});
+        const existingUser = await User.findOne({ email });
 
-        if(existingUser) {
+        if (existingUser) {
             throw Error("User with the provided email already exists");
         }
 
         const hashedPassword = await hashData(password);
         const newUser = new User({
-            name, email, password: hashedPassword
-        })
+            name,
+            email,
+            password: hashedPassword,
+        });
         const createdUser = await newUser.save();
         return createdUser;
     } catch (error) {
         throw error;
     }
-}
+};
 
-const authenticateUser = async(data) => {
+const authenticateUser = async (data) => {
     try {
-        const {email, password} = data;
+        const { email, password } = data;
 
-        const fetchedUser = await User.findOne({email});
+        const fetchedUser = await User.findOne({ email });
 
-        if(!fetchedUser) {
+        if (!fetchedUser) {
             throw Error("There is no user with this email!");
         }
 
         const hashedPassword = fetchedUser.password;
         const passwordMatch = checkPassword(hashedPassword, password);
 
-        if(!passwordMatch) {
+        if (!passwordMatch) {
             throw Error("Invalid password entered!");
         }
 
-        const tokenData = {userId: fetchedUser._id, email};
+        const tokenData = { userId: fetchedUser._id, email };
         const token = await createToken(tokenData);
 
         fetchedUser.token = token;
@@ -48,6 +50,6 @@ const authenticateUser = async(data) => {
     } catch (error) {
         throw error;
     }
-}
+};
 
 module.exports = { createNewUser, authenticateUser };

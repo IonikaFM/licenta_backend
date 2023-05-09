@@ -7,7 +7,7 @@ const hashData = async (data, saltRounds = 10) => {
     } catch (error) {
         throw error;
     }
-}
+};
 
 const checkPassword = async (unhashed, hashed) => {
     try {
@@ -16,6 +16,6 @@ const checkPassword = async (unhashed, hashed) => {
     } catch (error) {
         throw error;
     }
-}
+};
 
 module.exports = { hashData, checkPassword };
