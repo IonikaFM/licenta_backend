@@ -9,7 +9,7 @@ const ReportDetailsSchema = new Schema({
 });
 
 const ReportSchema = new Schema({
-    image: Buffer,
+    image: String,
     details: ReportDetailsSchema,
     latitude: Number,
     longitude: Number,
