@@ -5,12 +5,13 @@ const Report = require("./model");
 
 router.post("/", async (req, res) => {
     try {
-        let { image, details, location, date } = req.body;
+        let { image, details, latitude, longitude, date } = req.body;
 
         const newReport = await createNewReport({
             image,
             details,
-            location,
+            latitude,
+            longitude,
             date,
         });
 

@@ -2,7 +2,7 @@ const Report = require("./model");
 
 const createNewReport = async (data) => {
     try {
-        const { image, details, location, date } = data;
+        const { image, details, latitude, longitude, date } = data;
 
         const existingReport = await Report.findOne({ image });
 
@@ -13,7 +13,8 @@ const createNewReport = async (data) => {
         const newReport = new Report({
             image,
             details,
-            location,
+            latitude,
+            longitude,
             date,
         });
         const createdReport = await newReport.save();
