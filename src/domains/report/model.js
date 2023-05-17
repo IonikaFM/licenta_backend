@@ -11,8 +11,8 @@ const ReportDetailsSchema = new Schema({
 const ReportSchema = new Schema({
     image: String,
     details: ReportDetailsSchema,
-    latitude: Number,
-    longitude: Number,
+    latitude: String,
+    longitude: String,
     date: Date,
 });
 
