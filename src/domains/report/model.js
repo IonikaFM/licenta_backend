@@ -5,16 +5,15 @@ const ReportDetailsSchema = new Schema({
     size: String,
     color: String,
     injured: Boolean,
-    agressive: Boolean
-})
+    agressive: Boolean,
+});
 
 const ReportSchema = new Schema({
-   id: Number,
-   image: Buffer,
-   details: ReportDetailsSchema,
-   latitude: Number,
-   longitude: Number,
-   date: Date
+    image: Buffer,
+    details: ReportDetailsSchema,
+    latitude: Number,
+    longitude: Number,
+    date: Date,
 });
 
 const Report = mongoose.model("Report", ReportSchema);

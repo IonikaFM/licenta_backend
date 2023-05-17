@@ -4,9 +4,14 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
     try {
-        let { id, image, details, location, date } = req.body;
+        let { image, details, location, date } = req.body;
 
-        const newReport = await createNewReport({ id, image, details, location, date });
+        const newReport = await createNewReport({
+            image,
+            details,
+            location,
+            date,
+        });
 
         res.status(200).json(newReport);
     } catch (error) {
