@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const ReportDetailsSchema = new Schema({
     size: String,
-    color: String,
+    colors: [String],
     injured: Boolean,
     agressive: Boolean,
 });
