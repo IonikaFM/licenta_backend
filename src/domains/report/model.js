@@ -14,7 +14,7 @@ const ReportSchema = new Schema({
     enum: ["FOUND", "LOST"],
     required: true,
   },
-  image: Buffer,
+  image: String,
   details: ReportDetailsSchema,
   latitude: Number,
   longitude: Number,
