@@ -9,11 +9,11 @@ const ReportDetailsSchema = new Schema({
 });
 
 const ReportSchema = new Schema({
-  type: {
-    type: String,
-    enum: ["FOUND", "LOST"],
-    required: true,
-  },
+  // type: {
+  //   type: String,
+  //   enum: ["FOUND", "LOST"],
+  //   required: true,
+  // },
   image: String,
   details: ReportDetailsSchema,
   latitude: Number,
