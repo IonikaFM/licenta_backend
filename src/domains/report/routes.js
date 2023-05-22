@@ -43,11 +43,11 @@ const kmToDegrees = (km, latitude) =>
     km / (111.32 * Math.cos(latitude * (Math.PI / 180)));
 
 router.get("/", async (req, res) => {
-    let { latitude, longitude, distance } = req.query;
+    let { latitude, longitude, distance, reportType } = req.query;
 
-    if (!latitude || !longitude || !distance) {
+    if (!latitude || !longitude || !distance || !reportType) {
         return res.status(400).json({
-            error: "Latitude, longitude and maximum distance are required",
+            error: "Latitude, longitude, maximum distance and report type are required",
         });
     }
 
@@ -67,6 +67,7 @@ router.get("/", async (req, res) => {
                 $gte: lonDegrees - distanceDegrees,
                 $lte: lonDegrees + distanceDegrees,
             },
+            type: reportType,
         });
 
         return res.json({ reports });
