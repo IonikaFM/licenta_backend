@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const { WS_PORT } = process.env;
 const http = require("http");
 const { initializeWebSocket, emitEvent } = require("./websocket");
+const app = require("../app");
 
 const { MONGODB_URI } = process.env;
 
@@ -42,7 +43,7 @@ async function setUpChangeStream(mongoose) {
 
 function startServerListener() {
     try {
-        const server = http.createServer();
+        const server = http.createServer(app);
 
         initializeWebSocket(server);
 
