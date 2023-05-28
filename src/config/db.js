@@ -9,7 +9,7 @@ const { MONGODB_URI } = process.env;
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: `https://backend-licenta.onrender.com:${process.env.PORT}`,
+        origin: `https://backend-licenta.onrender.com`,
     },
 });
 const connectToDB = async () => {
