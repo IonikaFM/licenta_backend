@@ -26,12 +26,6 @@ router.get("/:id", async (req, res) => {
 	try {
 		const comments = await Comment.find({ reportId: id });
 
-		if (comments.length === 0) {
-			return res
-				.status(404)
-				.json({ error: "No comments found for the given report ID" });
-		}
-
 		return res.json(comments);
 	} catch (error) {
 		console.error(error);
