@@ -19,6 +19,7 @@ const ReportSchema = new Schema({
 	details: ReportDetailsSchema,
 	latitude: Number,
 	longitude: Number,
+	address: String,
 	date: Date,
 });
 

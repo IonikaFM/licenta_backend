@@ -1,28 +1,30 @@
 const Report = require("./model");
 
 const createNewReport = async (data) => {
-    try {
-        const { type, image, details, latitude, longitude, date } = data;
+	try {
+		const { type, image, details, latitude, longitude, date, address } =
+			data;
 
-        const existingReport = await Report.findOne({ image });
+		const existingReport = await Report.findOne({ image });
 
-        if (existingReport) {
-            throw Error("Report with the provided image already exists");
-        }
+		if (existingReport) {
+			throw Error("Report with the provided image already exists");
+		}
 
-        const newReport = new Report({
-            type,
-            image,
-            details,
-            latitude,
-            longitude,
-            date,
-        });
-        const createdReport = await newReport.save();
-        return createdReport;
-    } catch (error) {
-        throw error;
-    }
+		const newReport = new Report({
+			type,
+			image,
+			details,
+			latitude,
+			longitude,
+			date,
+			address,
+		});
+		const createdReport = await newReport.save();
+		return createdReport;
+	} catch (error) {
+		throw error;
+	}
 };
 
 module.exports = { createNewReport };
