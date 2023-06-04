@@ -90,4 +90,39 @@ router.get("/", async (req, res) => {
 	}
 });
 
+router.get("/reportsOfUser/:userEmail", async (req, res) => {
+	const { userEmail } = req.params;
+
+	try {
+		const reports = await Report.find({ userEmail: userEmail });
+
+		console.log(reports);
+		if (!reports) {
+			return res.status(404).json({ error: "Report not found" });
+		}
+
+		return res.json(reports);
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ error: "Internal server error" });
+	}
+});
+
+router.delete("/:id", async (req, res) => {
+	const { id } = req.params;
+
+	try {
+		const deletedReport = await Report.findByIdAndDelete(id);
+
+		if (!deletedReport) {
+			return res.status(404).json({ error: "Report not found" });
+		}
+
+		return res.status(200).json({ message: "Report deleted successfully" });
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ error: "Internal server error" });
+	}
+});
+
 module.exports = router;
