@@ -2,13 +2,14 @@ const Comment = require("./model");
 
 const createNewComment = async (receivedData) => {
 	try {
-		const { user, data, date, reportId } = receivedData;
+		const { user, data, date, reportId, userEmail } = receivedData;
 
 		const newComment = new Comment({
 			user,
 			data,
 			date,
 			reportId,
+			userEmail,
 		});
 
 		const createdComment = await newComment.save();

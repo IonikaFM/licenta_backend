@@ -5,13 +5,14 @@ const Comment = require("./model");
 
 router.post("/", async (req, res) => {
 	try {
-		let { user, data, date, reportId } = req.body;
+		let { user, data, date, reportId, userEmail } = req.body;
 
 		const newComment = await createNewComment({
 			user,
 			data,
 			date,
 			reportId,
+			userEmail,
 		});
 
 		res.status(200).json(newComment);
