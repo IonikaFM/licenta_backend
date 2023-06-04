@@ -5,8 +5,16 @@ const Report = require("./model");
 
 router.post("/", async (req, res) => {
 	try {
-		let { type, image, details, latitude, longitude, date, address } =
-			req.body;
+		let {
+			type,
+			image,
+			details,
+			latitude,
+			longitude,
+			date,
+			address,
+			userEmail,
+		} = req.body;
 
 		const newReport = await createNewReport({
 			type,
@@ -16,6 +24,7 @@ router.post("/", async (req, res) => {
 			longitude,
 			date,
 			address,
+			userEmail,
 		});
 
 		res.status(200).json(newReport);
