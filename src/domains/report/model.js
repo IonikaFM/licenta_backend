@@ -21,6 +21,7 @@ const ReportSchema = new Schema({
 	longitude: Number,
 	address: String,
 	date: Date,
+	userEmail: String,
 });
 
 const Report = mongoose.model("Report", ReportSchema);
