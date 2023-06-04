@@ -29,7 +29,7 @@ const startApp = () => {
 			}
 
 			if (change.operationType === "delete") {
-				io.emit("deletReport", change);
+				io.emit("deleteReport", change);
 			}
 		});
 	} catch (error) {
