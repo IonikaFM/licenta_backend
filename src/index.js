@@ -27,6 +27,10 @@ const startApp = () => {
 			if (change.operationType === "insert") {
 				io.emit("insertReport", change);
 			}
+
+			if (change.operationType === "delete") {
+				io.emit("deletReport", change);
+			}
 		});
 	} catch (error) {
 		console.error("Error setting up change stream:", error);
