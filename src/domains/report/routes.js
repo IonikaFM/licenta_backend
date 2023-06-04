@@ -96,11 +96,6 @@ router.get("/reportsOfUser/:userEmail", async (req, res) => {
 	try {
 		const reports = await Report.find({ userEmail: userEmail });
 
-		console.log(reports);
-		if (!reports) {
-			return res.status(404).json({ error: "Report not found" });
-		}
-
 		return res.json(reports);
 	} catch (error) {
 		console.error(error);
